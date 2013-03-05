@@ -39,6 +39,7 @@
 @synthesize barTintColor;
 @synthesize domainLockList;
 @synthesize currentURL;
+@synthesize showNavigationBarInModalMode;
 
 #define kToolBarHeight  44
 #define kTabBarHeight   49
@@ -88,6 +89,10 @@ enum actionSheetButtonIndex {
     }
 }
 
+-(UIBarButtonItem *)doneButton{
+    return [[UIBarButtonItem alloc] initWithTitle:modalDismissButtonTitle style:UIBarButtonItemStyleBordered target:self action:@selector(dismissController)];
+}
+
 //Added in the dealloc method to remove the webview delegate, because if you use this in a navigation controller
 //TSMiniWebBrowser can get deallocated while the page is still loading and the web view will call its delegate-- resulting in a crash
 -(void)dealloc
@@ -96,13 +101,10 @@ enum actionSheetButtonIndex {
 }
 
 #pragma mark - Init
-
 // This method is only used in modal mode
 -(void) initTitleBar {
-    UIBarButtonItem *buttonDone = [[UIBarButtonItem alloc] initWithTitle:modalDismissButtonTitle style:UIBarButtonItemStyleBordered target:self action:@selector(dismissController)];
-    
     UINavigationItem *titleBar = [[UINavigationItem alloc] initWithTitle:@""];
-    titleBar.leftBarButtonItem = buttonDone;
+    titleBar.leftBarButtonItem = [self doneButton];
     
     CGFloat width = self.view.frame.size.width;
     navigationBarModal = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, width, 44)];
@@ -167,6 +169,9 @@ enum actionSheetButtonIndex {
         [toolBarButtons addObject:fixedSpace2];
         [toolBarButtons addObject:buttonAction];
     }
+    if(showNavigationBarInModalMode == NO){
+        [toolBarButtons addObject:[self doneButton]];
+    }
     
     // Set buttons to tool bar
     [toolBar setItems:toolBarButtons animated:YES];
@@ -178,7 +183,9 @@ enum actionSheetButtonIndex {
 -(void) initWebView {
     CGSize viewSize = self.view.frame.size;
     if (mode == TSMiniWebBrowserModeModal) {
-        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, kToolBarHeight, viewSize.width, viewSize.height-kToolBarHeight*2)];
+        int webY = showNavigationBarInModalMode ? kToolBarHeight : 0;
+        int webHeight = showNavigationBarInModalMode ? kToolBarHeight*2 : kToolBarHeight*1;
+        webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, webY, viewSize.width, viewSize.height-webHeight)];
     } else if(mode == TSMiniWebBrowserModeNavigation) {
         webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, viewSize.width, viewSize.height-kToolBarHeight)];
     } else if(mode == TSMiniWebBrowserModeTabBar) {
@@ -208,6 +215,7 @@ enum actionSheetButtonIndex {
         // Defaults
         mode = TSMiniWebBrowserModeNavigation;
         showURLStringOnActionSheetTitle = YES;
+        showNavigationBarInModalMode = YES;
         showPageTitleOnTitleBar = YES;
         showReloadButton = YES;
         showActionButton = YES;
@@ -247,8 +255,8 @@ enum actionSheetButtonIndex {
     // Init web view
     [self initWebView];
     
-    // Init title bar if presented modally
-    if (mode == TSMiniWebBrowserModeModal) {
+    // Init title bar if presented modally and needed
+    if (mode == TSMiniWebBrowserModeModal && showNavigationBarInModalMode) {
         [self initTitleBar];
     }
     

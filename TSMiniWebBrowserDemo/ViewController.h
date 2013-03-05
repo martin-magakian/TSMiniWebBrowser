@@ -30,6 +30,7 @@
 @interface ViewController : UIViewController <TSMiniWebBrowserDelegate> {
     
 }
-- (IBAction)buttonTouchUp:(id)sender;
+- (IBAction)navigationTouchUp:(id)sender;
+- (IBAction)modalTouchUp:(id)sender;
 
 @end
