@@ -42,6 +42,7 @@
     webBrowser.barStyle = UIBarStyleBlack;
     
     [self.navigationController pushViewController:webBrowser animated:YES];
+    [webBrowser release];
 }
 
 - (IBAction)modalTouchUp:(id)sender {
@@ -54,6 +55,7 @@
     
     webBrowser.modalDismissButtonTitle = @"Close";
     [self presentModalViewController:webBrowser animated:YES];
+    [webBrowser release];
 }
 
 #pragma mark - TSMiniWebBrowserDelegate

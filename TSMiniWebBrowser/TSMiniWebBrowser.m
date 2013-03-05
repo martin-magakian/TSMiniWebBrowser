@@ -90,7 +90,7 @@ enum actionSheetButtonIndex {
 }
 
 -(UIBarButtonItem *)doneButton{
-    return [[UIBarButtonItem alloc] initWithTitle:modalDismissButtonTitle style:UIBarButtonItemStyleBordered target:self action:@selector(dismissController)];
+    return [[[UIBarButtonItem alloc] initWithTitle:modalDismissButtonTitle style:UIBarButtonItemStyleBordered target:self action:@selector(dismissController)] autorelease];
 }
 
 //Added in the dealloc method to remove the webview delegate, because if you use this in a navigation controller
@@ -98,12 +98,16 @@ enum actionSheetButtonIndex {
 -(void)dealloc
 {
     [webView setDelegate:nil];
+    [modalDismissButtonTitle release];
+    [domainLockList release];
+    [currentURL release];
+    [super dealloc];
 }
 
 #pragma mark - Init
 // This method is only used in modal mode
 -(void) initTitleBar {
-    UINavigationItem *titleBar = [[UINavigationItem alloc] initWithTitle:@""];
+    UINavigationItem *titleBar = [[[UINavigationItem alloc] initWithTitle:@""] autorelease];
     titleBar.leftBarButtonItem = [self doneButton];
     
     CGFloat width = self.view.frame.size.width;
@@ -134,29 +138,29 @@ enum actionSheetButtonIndex {
     
     buttonGoBack = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonTouchUp:)];
     
-    UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    UIBarButtonItem *fixedSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
     fixedSpace.width = 30;
     
     buttonGoForward = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"forward_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(forwardButtonTouchUp:)];
     
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
-    UIBarButtonItem *buttonReload = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reload_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadButtonTouchUp:)];
+    UIBarButtonItem *buttonReload = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reload_icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(reloadButtonTouchUp:)] autorelease];
     
-    UIBarButtonItem *fixedSpace2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    UIBarButtonItem *fixedSpace2 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
     fixedSpace2.width = 20;
     
-    UIBarButtonItem *buttonAction = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(buttonActionTouchUp:)];
+    UIBarButtonItem *buttonAction = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(buttonActionTouchUp:)] autorelease];
     
     // Activity indicator is a bit special
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     activityIndicator.frame = CGRectMake(11, 7, 20, 20);
-    UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 43, 33)];
+    UIView *containerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 43, 33)] autorelease];
     [containerView addSubview:activityIndicator];
-    UIBarButtonItem *buttonContainer = [[UIBarButtonItem alloc] initWithCustomView:containerView];
+    UIBarButtonItem *buttonContainer = [[[UIBarButtonItem alloc] initWithCustomView:containerView] autorelease];
     
     // Add butons to an array
-    NSMutableArray *toolBarButtons = [[NSMutableArray alloc] init];
+    NSMutableArray *toolBarButtons = [[[NSMutableArray alloc] init] autorelease];
     [toolBarButtons addObject:buttonGoBack];
     [toolBarButtons addObject:fixedSpace];
     [toolBarButtons addObject:buttonGoForward];
@@ -358,7 +362,7 @@ enum actionSheetButtonIndex {
         NSURL* url = [webView.request URL];
         urlString = [url absoluteString];
     }
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
+    UIActionSheet *actionSheet = [[[UIActionSheet alloc] init] autorelease];
     actionSheet.title = urlString;
     actionSheet.delegate = self;
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Open in Safari", nil)];
@@ -552,6 +556,7 @@ enum actionSheetButtonIndex {
                                           cancelButtonTitle:nil
                                           otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
 	[alert show];
+    [alert release];
 }
 
 @end

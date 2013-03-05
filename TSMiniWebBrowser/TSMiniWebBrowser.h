@@ -75,10 +75,10 @@ typedef enum {
 @property (nonatomic, assign) BOOL showActionButton;
 @property (nonatomic, assign) BOOL showNavigationBarInModalMode; // Only used in modal mode
 @property (nonatomic, assign) UIBarStyle barStyle;
-@property (nonatomic, strong) UIColor *barTintColor;
-@property (nonatomic, strong) NSString *modalDismissButtonTitle;
-@property (nonatomic, strong) NSString *domainLockList;
-@property (nonatomic, strong) NSString *currentURL;
+@property (nonatomic, retain) UIColor *barTintColor;
+@property (nonatomic, retain) NSString *modalDismissButtonTitle;
+@property (nonatomic, retain) NSString *domainLockList;
+@property (nonatomic, retain) NSString *currentURL;
 
 // Public Methods
 - (id)initWithUrl:(NSURL*)url;

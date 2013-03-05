@@ -318,6 +318,7 @@
 		6F69CDCF14C6339C00BB6C57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TSMiniWebBrowserDemo/TSMiniWebBrowserDemo-Prefix.pch";
 				INFOPLIST_FILE = "TSMiniWebBrowserDemo/TSMiniWebBrowserDemo-Info.plist";
@@ -330,6 +331,7 @@
 		6F69CDD014C6339C00BB6C57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TSMiniWebBrowserDemo/TSMiniWebBrowserDemo-Prefix.pch";
 				INFOPLIST_FILE = "TSMiniWebBrowserDemo/TSMiniWebBrowserDemo-Info.plist";
