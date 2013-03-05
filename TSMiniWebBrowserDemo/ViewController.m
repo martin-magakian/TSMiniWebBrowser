@@ -51,7 +51,7 @@
     webBrowser.mode = TSMiniWebBrowserModeModal;
     webBrowser.barStyle = UIBarStyleBlack;
     webBrowser.showActionButton = YES;
-    //webBrowser.showNavigationBarInModalMode = NO;
+    //webBrowser.showNavigationBarInModalMode = NO; 
     
     webBrowser.modalDismissButtonTitle = @"Close";
     [self presentModalViewController:webBrowser animated:YES];
