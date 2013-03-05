@@ -84,7 +84,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Modal</string>
+						<string key="IBUINormalTitle">Mode Modal</string>
 						<reference key="IBUIHighlightedTitleColor" ref="419969239"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -201,15 +201,10 @@
 					<string key="className">ViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="buttonTouchUp:">id</string>
 						<string key="modalTouchUp:">id</string>
 						<string key="navigationTouchUp:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="buttonTouchUp:">
-							<string key="name">buttonTouchUp:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="modalTouchUp:">
 							<string key="name">modalTouchUp:</string>
 							<string key="candidateClassName">id</string>
