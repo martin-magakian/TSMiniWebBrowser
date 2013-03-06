@@ -313,7 +313,7 @@ enum actionSheetButtonIndex {
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return YES;
 }
 
 /* Fix for landscape + zooming webview bug.
@@ -482,7 +482,7 @@ enum actionSheetButtonIndex {
             {
 				if (navigationType == UIWebViewNavigationTypeLinkClicked)
 				{
-					currentURL = request.URL.absoluteString;
+					self.currentURL = request.URL.absoluteString;
 				}
                 
                 return YES;
@@ -512,7 +512,7 @@ enum actionSheetButtonIndex {
                 {
 					if (navigationType == UIWebViewNavigationTypeLinkClicked)
 					{
-						currentURL = request.URL.absoluteString;
+						self.currentURL = request.URL.absoluteString;
 					}
                     
                     return YES;
