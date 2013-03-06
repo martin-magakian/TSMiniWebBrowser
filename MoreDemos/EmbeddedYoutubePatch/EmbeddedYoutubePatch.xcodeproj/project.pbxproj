@@ -287,6 +287,7 @@
 		6FBF4B7D14F7EACF0048C98E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EmbeddedYoutubePatch/EmbeddedYoutubePatch-Prefix.pch";
 				INFOPLIST_FILE = "EmbeddedYoutubePatch/EmbeddedYoutubePatch-Info.plist";
@@ -298,6 +299,7 @@
 		6FBF4B7E14F7EACF0048C98E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EmbeddedYoutubePatch/EmbeddedYoutubePatch-Prefix.pch";
 				INFOPLIST_FILE = "EmbeddedYoutubePatch/EmbeddedYoutubePatch-Info.plist";
@@ -325,6 +327,7 @@
 				6FBF4B7E14F7EACF0048C98E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
